@@ -6,6 +6,7 @@
 %endif
 
 %global _buildhost localhost.localdomain
+%define _binaries_in_noarch_packages_terminate_build   0
 
 Name:              gethostname
 Version:           1.0.0
@@ -15,7 +16,7 @@ Group:		       System Environment/Libraries
 BuildArch: 		   noarch
 License:           Apache-2.0
 URL:               https://github.com/elulcao/gethostname
-Vendor:
+Vendor:		   	   elulcao
 Source0:           %{name}-%{version}.tar.bz2
 BuildRequires:     gcc
 Requires:          hostname
@@ -39,5 +40,5 @@ make install BINDIR=$RPM_BUILD_ROOT/%{_bindir} LIBDIR=$RPM_BUILD_ROOT/%{_libdir}
 %attr(0755,root,root) %{_libdir}/lib%{name}.so.1
 
 %changelog
-* Wed Nov 18 2021 elulcao <elulcao@icloud.com> 1.0.0-1
+* Thu Nov 18 2021 elulcao <elulcao@icloud.com> 1.0.0-1
 - Initial version of the package

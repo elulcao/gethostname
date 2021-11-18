@@ -6,17 +6,17 @@
 %endif
 
 %global _buildhost localhost.localdomain
-%define _binaries_in_noarch_packages_terminate_build   0
+%define _binaries_in_noarch_packages_terminate_build 0
 
 Name:              gethostname
 Version:           1.0.0
 Release:           1%{?dist}
 Summary:           Spoof gethostname system call
-Group:		       System Environment/Libraries
-BuildArch: 		   noarch
+Group:		   System Environment/Libraries
+BuildArch: 	   noarch
 License:           Apache-2.0
 URL:               https://github.com/elulcao/gethostname
-Vendor:		   	   elulcao
+Vendor:		   elulcao
 Source0:           %{name}-%{version}.tar.bz2
 BuildRequires:     gcc
 Requires:          hostname

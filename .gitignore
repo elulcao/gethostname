@@ -50,3 +50,26 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Extras
+# vi
+*~
+
+# macOS
+**.DS_Store
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# vscode
+**.vscode
+*.code-workspace
+
+**venv**
+**build/
+*.tar.bz2
+*.rpm

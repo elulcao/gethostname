@@ -12,6 +12,7 @@ Version:           1.0.0
 Release:           1%{?dist}
 Summary:           Spoof gethostname system call
 Group:		       System Environment/Libraries
+BuildArch: 		   noarch
 License:           Apache-2.0
 URL:               https://github.com/elulcao/gethostname
 Vendor:
@@ -38,5 +39,5 @@ make install BINDIR=$RPM_BUILD_ROOT/%{_bindir} LIBDIR=$RPM_BUILD_ROOT/%{_libdir}
 %attr(0755,root,root) %{_libdir}/lib%{name}.so.1
 
 %changelog
-* Wed Nov 03 2021 elulcao <elulcao@icloud.com> 1.0.0-1
+* Wed Nov 18 2021 elulcao <elulcao@icloud.com> 1.0.0-1
 - Initial version of the package

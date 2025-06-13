@@ -1,18 +1,34 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <dlfcn.h>
 
 // gethostname() - get host name of machine running this program
 int gethostname(char *name, size_t len)
 {
-  if (len < 10)
-  {             // check if the buffer is large enough
-    return (1); // return 1 if len is less than 10
-  }
-  if (getenv("NEWHOSTNAME")) // check if the environment variable NEWHOSTNAME is set
+  if (len < 1)
   {
-    strncpy(name, getenv("NEWHOSTNAME"), len); // copy the value of the environment variable NEWHOSTNAME to the buffer
+    return 1; // invalid length
   }
 
-  return 0; // return 0 if everything is ok
+  const char *new_name = getenv("NEWHOSTNAME");
+  if (new_name && *new_name)
+  {
+    // ensure the buffer is always null terminated
+    snprintf(name, len, "%s", new_name);
+    return 0;
+  }
+
+  static int (*real_gethostname)(char *, size_t) = NULL;
+  if (!real_gethostname)
+  {
+    real_gethostname = dlsym(RTLD_NEXT, "gethostname");
+    if (!real_gethostname)
+    {
+      return 1; // failed to resolve symbol
+    }
+  }
+
+  return real_gethostname(name, len);
 }

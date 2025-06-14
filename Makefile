@@ -12,7 +12,13 @@ lib$(NAME).so.1: $(NAME).c
 	$(CC) -fPIC -rdynamic -g -Wall -shared -Wl,-soname,$@ -lc -ldl -o $@ $<
 
 test:
-	LD_PRELOAD=$(PWD)/lib$(NAME).so.1 NEWHOSTNAME=my_host_name hostname
+	@out=`LD_PRELOAD=$(PWD)/lib$(NAME).so.1 NEWHOSTNAME=my_host_name hostname`; \
+	if [ "$$out" = "my_host_name" ]; then \
+	echo "hostname output matches my_host_name"; \
+	else \
+	echo "expected my_host_name but got $$out"; \
+	exit 1; \
+	fi
 
 clean:
 	-rm -f lib$(NAME).so.1

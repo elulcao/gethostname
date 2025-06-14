@@ -34,6 +34,6 @@ $ make build
 gcc -fPIC -rdynamic -g -Wall -shared -Wl,-soname,libgethostname.so.1 -lc -ldl -o libgethostname.so.1 gethostname.c
 
 $ make test
-LD_PRELOAD=~/home/opc/GitLab/cicd/gethostname/libgethostname.so.1 NEWHOSTNAME=my_host_name hostname
+LD_PRELOAD=~/GitLab/cicd/gethostname/libgethostname.so.1 NEWHOSTNAME=my_host_name hostname
 my_host_name
 ```
